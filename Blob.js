@@ -183,14 +183,15 @@ Blob.prototype.moveTo = function(xy) {
 * Ejecting Blob(s)
 */
 
-Blob.prototype.eject = function(mass, speed, degrees) {
+Blob.prototype.eject = function(mass, speed, degrees, clickPosition) {
 	if (mass > this.mass) { throw "Ejecting more mass than " + this + " has!"; }
 
 	var ejectaRadius = Blob.radiusFromMass(mass);
-	var ejectaPosition = [
-		this.position[0] + Math.cos(toRadians(degrees))*(this.radius + ejectaRadius),
-		this.position[1] + Math.sin(toRadians(degrees))*(this.radius + ejectaRadius)
-	];
+	// var ejectaPosition = [
+	// 	this.position[0] + Math.cos(toRadians(degrees))*(this.radius + ejectaRadius),
+	// 	this.position[1] + Math.sin(toRadians(degrees))*(this.radius + ejectaRadius)
+	// ];
+	var ejectaPosition = [ clickPosition[0], clickPosition[1] ];
 
 	var ejectaDirection = this.position.map(function(c, i) { return c - ejectaPosition[i]; });
 	var ejectaVelocity = unitVector(ejectaDirection).map(function(v) { return -1*speed*v; });
