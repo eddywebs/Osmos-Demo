@@ -81,6 +81,8 @@ Object.defineProperty(Blob.prototype, 'mass', {
 	set: function(m) {
 		this._mass = m;
 		if (this._mass < 0) {
+			sun.addMass(m);
+			console.log(sun._mass);
 			console.log(this, "died!");
 			this._space.removeBlob(this);
 		}

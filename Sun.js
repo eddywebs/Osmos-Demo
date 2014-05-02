@@ -10,7 +10,8 @@ function Sun(space) {
   // Note that we needed to move where the Blob is added to the Space so that in inheriting the Blob, we didn't have to _construct_ it at inheritance time.
 }
 
-Sun.prototype = new Blob(); // Copy the rest of the recipe associated with a Blob, pre-existing attributes are _not_ over-written
+
+Copy the rest of the recipe associated with a Blob, pre-existing attributes are _not_ over-written
 
 
 Object.defineProperty(Sun.prototype, 'overlappers', {
@@ -25,6 +26,10 @@ Object.defineProperty(Sun.prototype, 'mass', {
   set: function () { }
   }
 );
+
+Sun.prototype.addMass = function (addMass){
+  this._mass+=(Math.abs(addMass)*1000);
+}
 
 Sun.prototype.simulate = function() {
   // During each step in the Space's simulate loop, the Sun searches for all other Blobs and adjusts their velocity, pulling them toward it
